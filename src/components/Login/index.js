@@ -5,74 +5,89 @@ import {Redirect} from 'react-router-dom'
 
 class Login extends Component {
   state = {username: '', password: '', showErrMsg: false, errMsg: ''}
-  
-  onSubmit = jwtToken => {
+
+  onSubmitSuccess = jwtToken => {
     const {history} = this.props
-    Cookies.set("jwt_token",jwtToken,{expires: 30})
-    history.replace("/")
+    Cookies.set('jwt_token', jwtToken, {expires: 30})
+    history.replace('/')
   }
 
-  onsubmitFailure = (errMsg) => {
+  onSubmitFailure = errMsg => {
     this.setState({showErrMsg: true, errMsg})
   }
 
-  onSubmit = async event => {
+  onSubmitForm = async event => {
     event.preventDefault()
     const {username, password} = this.state
-    const userDetails = {username,password}
-    const url = "https://apis.ccbp.in/login"
+    const userDetails = {username, password}
+    const url = 'https://apis.ccbp.in/login'
     const options = {
-        method: "POST",
-        body: JSON.stringify(userDetails)
+      method: 'POST',
+      body: JSON.stringify(userDetails),
     }
     const response = await fetch(url, options)
-    if(response.ok) {
-        const data = await response.json()
-        this.onSubmitSuccess(data.jwt_token)
+    const data = await response.json()
+    if (response.ok) {
+      this.onSubmitSuccess(data.jwt_token)
     } else {
-        this.onsubmitFailure(data.error_msg)
+      this.onSubmitFailure(data.error_msg)
     }
   }
-  
+
   changeUsername = event => {
     this.setState({username: event.target.value})
   }
 
   changePassword = event => {
-    this.setState({password: event,target,value})
+    this.setState({password: event.target.value})
   }
-  
+
   renderUsername = () => {
     const {username} = this.state
     return (
-        <>
-        <label className="input-label" htmlFor="username">USERNAME</label>
-        <input id="username" type="text" placeholder="Username" value={username} onChange={this.changeUsername} />
-        </>
+      <>
+        <label className="input-label" htmlFor="username">
+          USERNAME
+        </label>
+        <input
+          id="username"
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={this.changeUsername}
+        />
+      </>
     )
   }
 
   renderPassword = () => {
     const {password} = this.state
     return (
-        <>
-        <label className="input-label" htmlFor="password">PASSWORD</label>
-        <input id="password" type="text" placeholder="Password" value={password} onChange={this.changePassword} />
-        </>
+      <>
+        <label className="input-label" htmlFor="password">
+          PASSWORD
+        </label>
+        <input
+          id="password"
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={this.changePassword}
+        />
+      </>
     )
   }
 
-
   render() {
     const {errMsg, showErrMsg} = this.state
-    const jwtToken = Cookies.get('jwt-token')
+    const jwtToken = Cookies.get('jwt_token')
     if (jwtToken !== undefined) {
       return <Redirect to="/" />
     }
 
     return (
       <div className="login-form-container">
-        <form className="form-container" onSubmit={this.submitForm}>
+        <form className="form-container" onSubmit={this.onSubmitForm}>
           <img
             src="https://assets.ccbp.in/frontend/react-js/logo-img.png"
             className="website-logo"
