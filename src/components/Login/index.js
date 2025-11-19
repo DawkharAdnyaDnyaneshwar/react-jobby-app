@@ -4,7 +4,7 @@ import Cookies from 'js-cookie'
 import {Redirect} from 'react-router-dom'
 
 class Login extends Component {
-  state = {username: '', password: '', showErrMsg: false, errMsg: ''}
+  state = {username: '', password: '', showErrMsg: false, errorMsg: ''}
 
   onSubmitSuccess = jwtToken => {
     const {history} = this.props
@@ -12,8 +12,8 @@ class Login extends Component {
     history.replace('/')
   }
 
-  onSubmitFailure = errMsg => {
-    this.setState({showErrMsg: true, errMsg})
+  onSubmitFailure = errorMsg => {
+    this.setState({showErrMsg: true, errorMsg})
   }
 
   onSubmitForm = async event => {
@@ -79,7 +79,7 @@ class Login extends Component {
   }
 
   render() {
-    const {errMsg, showErrMsg} = this.state
+    const {errorMsg, showErrMsg} = this.state
     const jwtToken = Cookies.get('jwt_token')
     if (jwtToken !== undefined) {
       return <Redirect to="/" />
@@ -98,7 +98,7 @@ class Login extends Component {
           <button className="login-button" type="submit">
             Login
           </button>
-          {showErrMsg && <p className="error-message">*{errMsg}</p>}
+          {showErrMsg && <p className="error-message">*{errorMsg}</p>}
         </form>
       </div>
     )
