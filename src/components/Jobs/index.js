@@ -174,7 +174,7 @@ class Job extends Component {
       />
       <h2 className="failure-heading">Oops! Something Went Wrong</h2>
       <p className="failure-description">
-        We cannot seen to find the page you are looking for.
+        We cannot seem to find the page you are looking for
       </p>
       <button className="retry-button" type="button" onClick={this.getJobList}>
         Retry
@@ -188,7 +188,7 @@ class Job extends Component {
       <div className="no-job-found-container">
         <img
           src="https://assets.ccbp.in/frontend/react-js/no-jobs-img.png"
-          alt="no job"
+          alt="no jobs"
           className="no-job-image"
         />
         <h2 className="no-job-heading">No Jobs Found</h2>
@@ -258,16 +258,18 @@ class Job extends Component {
       <>
         <Header />
         <div className="jobs-section">
-          <div className="input-el-container">
+          <div className="sm-input-el-container">
             <input
               type="search"
               value={searchValue}
               className="search-input-el"
+              placeholder="Search"
               onChange={this.changeSearchValue}
             />
             <button
               type="button"
               data-testid="searchButton"
+              className="search-btn"
               onClick={this.searchJob}
             >
               <BsSearch className="search-icon" />
@@ -307,17 +309,19 @@ class Job extends Component {
             </ul>
           </div>
           <div className="search-job-container">
-            <div className="input-el-container">
+            <div className="md-input-el-container">
               <input
                 type="search"
                 value={searchValue}
                 className="search-input-el"
+                placeholder="Search"
                 onChange={this.changeSearchValue}
               />
               <button
                 type="button"
                 data-testid="searchButton"
                 onClick={this.searchJob}
+                className="search-btn"
               >
                 <BsSearch className="search-icon" />
               </button>

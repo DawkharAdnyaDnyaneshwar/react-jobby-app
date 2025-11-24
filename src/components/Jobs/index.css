@@ -11,7 +11,7 @@
 }
 
 .filter-section {
-  width: 300px; 
+  width: 300px;
   flex-shrink: 0;
 }
 
@@ -75,7 +75,7 @@
   background-color: transparent;
   border: 1px solid #7e858e;
   border-radius: 8px;
-  display: none; 
+  display: none;
   align-items: center;
   overflow: hidden;
   margin-bottom: 25px;
@@ -114,7 +114,7 @@
   background-color: transparent;
   border: 1px solid #7e858e;
   border-radius: 8px;
-  display: none; 
+  display: none;
   align-items: center;
   overflow: hidden;
   margin-bottom: 25px;
@@ -133,10 +133,10 @@
 }
 
 .job-card {
-  background-color: #202020; 
+  background-color: #202020;
   padding: 20px;
   border-radius: 12px;
-  margin-bottom: 10px; 
+  margin-bottom: 10px;
 }
 
 .loader-container {
@@ -165,10 +165,10 @@
 
 @media (max-width: 768px) {
   .sm-input-el-container {
-    display: flex; 
+    display: flex;
   }
   .md-input-el-container {
-    display: none; 
+    display: none;
   }
 }
 

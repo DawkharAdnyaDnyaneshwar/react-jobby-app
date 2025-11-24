@@ -7,6 +7,7 @@ import {BsBriefcaseFill} from 'react-icons/bs'
 const JobCard = props => {
   const {jobDetail} = props
   const {
+    id,
     companyLogoUrl,
     employmentType,
     jobDescription,
@@ -16,7 +17,7 @@ const JobCard = props => {
     title,
   } = jobDetail
   return (
-    <Link to="/jobs/:id">
+    <Link to={`jobs/${id}`}>
       <li className="job-container">
         <div className="job-header-container">
           <img
