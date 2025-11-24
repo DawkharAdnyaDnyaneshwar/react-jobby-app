@@ -8,6 +8,7 @@ import {Component} from 'react'
 import Loader from 'react-loader-spinner'
 import Cookies from 'js-cookie'
 import {Link} from 'react-router-dom'
+import Header from '../Header'
 
 const apiStatusConstant = {
   initial: 'INITIAL',
@@ -28,15 +29,15 @@ class JobItemDetails extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const {
+  const {
       match: {
-        params: {id},
+        params: { id },
       },
     } = this.props
 
     const {
       match: {
-        params: {id: prevId},
+        params: { id: prevId },
       },
     } = prevProps
 
@@ -111,7 +112,7 @@ class JobItemDetails extends Component {
       />
       <h2 className="job-detail-failure-heading">Oops! Something Went Wrong</h2>
       <p className="job-detail-failure-description">
-        We cannot seen to find the page you are looking for.
+        We cannot seem to find the page you are looking for
       </p>
       <button className="retry-button" type="button" onClick={this.getJobList}>
         Retry
@@ -136,91 +137,114 @@ class JobItemDetails extends Component {
 
     return (
       <div className="job-detail-container">
-        <div className="job-detail-header-container">
-          <img
-            src={companyLogoUrl}
-            alt="company logo"
-            className="job-detail-company-logo"
-          />
-          <h2 className="job-detail-heading">{title}</h2>
-          <p className="job-detail-rating">
-            <AiFillStar className="job-detail-star" /> {rating}
-          </p>
-        </div>
-        <div className="job-detail-main-point-description-container">
-          <div className="job-detail-description-container">
-            <MdLocationOn className="job-detail-icon" />
-            <p className="job-detail-info">{location}</p>
+        <div className="company-info-container">
+          <div className="job-detail-header-container">
+            <img
+              src={companyLogoUrl}
+              alt="job details company logo"
+              className="job-detail-company-logo"
+            />
+            <h2 className="job-detail-heading">{title}</h2>
+            <p className="job-detail-rating">
+              <AiFillStar className="job-detail-star" /> {rating}
+            </p>
           </div>
-          <div className="job-detail-description-container">
-            <BsBriefcaseFill className="job-detail-icon" />
-            <p className="job-detail-info">{employmentType}</p>
+          <div className="job-detail-main-point-description-container">
+            <div className="job-detail-description-container">
+              <MdLocationOn className="job-detail-icon" />
+              <p className="job-detail-info">{location}</p>
+            </div>
+            <div className="job-detail-description-container">
+              <BsBriefcaseFill className="job-detail-icon" />
+              <p className="job-detail-info">{employmentType}</p>
+            </div>
+            <div className="job-detail-description-container">
+              <p className="job-detail-info">{packagePerAnnum}</p>
+            </div>
           </div>
-          <div className="job-detail-description-container">
-            <p className="job-detail-info">{packagePerAnnum}</p>
+          <hr className="job-detail-hr-line" />
+          <div className="job-detail-heading-container">
+            <h2 className="job-detail-description-heading">Description</h2>
+            <a
+              href={companyWebsiteUrl}
+              target="_blank"
+              className="anchor-el"
+              rel="noreferrer"
+            >
+              Visit <BsBoxArrowUpRight className="anchor-icon" />
+            </a>
           </div>
-        </div>
-        <hr className="job-detail-hr-line" />
-        <div className="job-detail-heading-container">
-          <h2 className="job-detail-description-heading">Description</h2>
-          <a
-            href={companyWebsiteUrl}
-            target="_blank"
-            className="anchor-el"
-            rel="noreferrer"
-          >
-            Visit <BsBoxArrowUpRight className="anchor-icon" />
-          </a>
-        </div>
-        <p className="description">{jobDescription}</p>
-        <h2 className="job-detail-heading">Skills</h2>
-        <ul className="skills-container">
-          {skills.map(eachSkill => (
-            <li key={eachSkill.name} className="skills">
-              <img
-                src={eachSkill.imageUrl}
-                alt={eachSkill.name}
-                className="skill-image"
-              />
-              <p className="skill-name">{eachSkill.name}</p>
-            </li>
-          ))}
-        </ul>
-        <h2 className="job-detail-heading">Life at Company</h2>
-        <div className="life-at-company-container">
-          <p className="life-at-company-description">
-            {lifeAtCompany.description}
-          </p>
-          <img
-            src={lifeAtCompany.imageUrl}
-            alt="life at company"
-            className="life-at-company-img"
-          />
-        </div>
-        <h2 className="job-detail-heading">Similar Jobs</h2>
-        <ul className="similar-jobs-container">
-          {similarJobs.map(eachJob => (
-            <Link to={`/jobs/${eachJob.id}`} className="link-item">
-              <li key={eachJob.id} className="similar-jobs">
-                <div className="similar-jobs-header-container">
-                  <img
-                    src={eachJob.companyLogoUrl}
-                    alt="similar job company logo"
-                    className="similar-job-company-logo"
-                  />
-                  <h2 className="similar-job-heading">{eachJob.title}</h2>
-                  <p className="similar-job-rating">
-                    <AiFillStar className="similar-job-star" /> {eachJob.rating}
-                  </p>
-                </div>
-                <h2 className="similar-job-heading">Description</h2>
-                <p className="similar-jobs-description">
-                  {eachJob.jobDescription}
-                </p>
+          <p className="description">{jobDescription}</p>
+          <h2 className="job-detail-heading">Skills</h2>
+          <ul className="skills-container">
+            {skills.map(eachSkill => (
+              <li key={eachSkill.name} className="skills">
+                <img
+                  src={eachSkill.imageUrl}
+                  alt={eachSkill.name}
+                  className="skill-image"
+                />
+                <p className="skill-name">{eachSkill.name}</p>
               </li>
-            </Link>
-          ))}
-        </ul>
+            ))}
+          </ul>
+          <h2 className="job-detail-heading">Life at Company</h2>
+          <div className="life-at-company-container">
+            <p className="life-at-company-description">
+              {lifeAtCompany.description}
+            </p>
+            <img
+              src={lifeAtCompany.imageUrl}
+              alt="life at company"
+              className="life-at-company-img"
+            />
+          </div>
+        </div>
+        <div className="similar-job-main-container">
+          <h2 className="job-detail-heading">Similar Jobs</h2>
+          <ul className="similar-jobs-container">
+            {similarJobs.map(eachJob => (
+              <Link
+                to={`/jobs/${eachJob.id}`}
+                className="link-item"
+                key={eachJob.id}
+              >
+                <li className="similar-jobs">
+                  <div className="similar-jobs-header-container">
+                    <img
+                      src={eachJob.companyLogoUrl}
+                      alt="similar job company logo"
+                      className="similar-job-company-logo"
+                    />
+                    <h2 className="similar-job-heading">{eachJob.title}</h2>
+                    <p className="similar-job-rating">
+                      <AiFillStar className="similar-job-star" />{' '}
+                      {eachJob.rating}
+                    </p>
+                  </div>
+                  <h2 className="similar-job-heading">Description</h2>
+                  <p className="similar-jobs-description">
+                    {eachJob.jobDescription}
+                  </p>
+                  <div className="similar-jobs-main-point-description-container">
+                    <div className="similar-jobs-description-container">
+                      <MdLocationOn className="similar-jobs-detail-icon" />
+                      <p className="similar-jobs-detail-info">
+                        {eachJob.location}
+                      </p>
+                    </div>
+                    <div className="similar-jobs-description-container">
+                      <BsBriefcaseFill className="similar-jobs-detail-icon" />
+                      <p className="similar-jobs-detail-info">
+                        {eachJob.employmentType}
+                      </p>
+                    </div>
+                  </div>
+                </li>
+              </Link>
+            ))}
+          </ul>
+        </div>
       </div>
     )
   }
@@ -246,7 +270,12 @@ class JobItemDetails extends Component {
   )
 
   render() {
-    return this.renderJobsSection()
+    return (
+      <>
+        <Header />
+        {this.renderJobsSection()}
+      </>
+    )
   }
 }
 
